@@ -1,13 +1,28 @@
 import { Link, useLocation } from "wouter";
-import { TreePine } from "lucide-react";
+import { TreePine, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 
 interface NavigationProps {
   currentPage?: string;
 }
 
 export default function Navigation({ currentPage }: NavigationProps) {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  const [currentUser, setCurrentUser] = useState<any>(null);
+
+  useEffect(() => {
+    const user = localStorage.getItem('currentUser');
+    if (user) {
+      setCurrentUser(JSON.parse(user));
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    localStorage.removeItem('currentUser');
+    setCurrentUser(null);
+    setLocation('/');
+  };
 
   const isActive = (path: string) => location === path || currentPage === path;
 
@@ -47,12 +62,34 @@ export default function Navigation({ currentPage }: NavigationProps) {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Link href="/register" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
-              Sign In
-            </Link>
-            <Link href="/register">
-              <Button>Sign Up</Button>
-            </Link>
+            {currentUser ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-sm text-gray-700">
+                  Welcome, {currentUser.name}
+                </span>
+                <Link href="/dashboard" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+                  Dashboard
+                </Link>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="flex items-center space-x-1"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Sign Out</span>
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Link href="/sign-in" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+                  Sign In
+                </Link>
+                <Link href="/register">
+                  <Button>Sign Up</Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

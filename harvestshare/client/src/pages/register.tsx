@@ -282,17 +282,17 @@ export default function Register() {
             </form>
           </Form>
 
-          <div className="mt-4 text-center">
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-primary hover:underline text-sm"
-            >
-              {isLogin 
-                ? "Don't have an account? Sign up"
-                : "Already have an account? Sign in"
-              }
-            </button>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Already have an account?{' '}
+              <Button
+                variant="link"
+                className="p-0"
+                onClick={() => setLocation('/sign-in')}
+              >
+                Sign in here
+              </Button>
+            </p>
           </div>
         </CardContent>
       </Card>
