@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { TreePine, Upload, Calendar, DollarSign, Check } from "lucide-react";
@@ -129,6 +130,36 @@ export default function AddProperty() {
       preferredQualities: selectedQualities,
     });
   };
+
+  useEffect(() => {
+    const fetchCoordinates = async () => {
+      const address = form.getValues("address");
+      if (!address) return;
+
+      const query = encodeURIComponent(address);
+      const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json`;
+
+      try {
+        const response = await fetch(url);
+        const results = await response.json();
+
+        if (results.length > 0) {
+          const { lat, lon } = results[0];
+          const latitude = parseFloat(lat);
+          const longitude = parseFloat(lon);
+
+          setCoordinates({ lat: latitude, lng: longitude });
+          form.setValue("latitude", latitude.toString());
+          form.setValue("longitude", longitude.toString());
+        }
+      } catch (error) {
+        console.error("Geocoding error:", error);
+      }
+    };
+
+    const timeoutId = setTimeout(fetchCoordinates, 1000); // debounce input to reduce API calls
+    return () => clearTimeout(timeoutId);
+  }, [form.watch("address")]);
 
   return (
     <div className="min-h-screen bg-gray-50">
