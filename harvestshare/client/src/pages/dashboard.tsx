@@ -257,10 +257,12 @@ export default function Dashboard() {
                     </Link>
                   </>
                 )}
-                <Button variant="outline" className="w-full">
-                  <UserPen className="mr-2 h-4 w-4" />
-                  Edit Profile
-                </Button>
+                <Link href="/edit-profile" className="block">
+                  <Button variant="outline" className="w-full">
+                    <UserPen className="mr-2 h-4 w-4" />
+                    Edit Profile
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 

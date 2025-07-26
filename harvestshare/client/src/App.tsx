@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import Register from "@/pages/register";
 import SignIn from "@/pages/sign-in";
+import EditProfile from "@/pages/edit-profile";
 import AddProperty from "@/pages/add-property";
 import BrowseProperties from "@/pages/browse-properties";
 import Dashboard from "@/pages/dashboard";
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/register" component={Register} />
       <Route path="/sign-in" component={SignIn} />
+      <Route path="/edit-profile" component={EditProfile} />
       <Route path="/add-property" component={AddProperty} />
       <Route path="/browse-properties" component={BrowseProperties} />
       <Route path="/dashboard" component={Dashboard} />
