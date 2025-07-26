@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { TreePine, Upload, Calendar, DollarSign, Check } from "lucide-react";
+import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -130,8 +131,10 @@ export default function AddProperty() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      <Navigation currentPage="/add-property" />
+      <div className="py-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
@@ -471,6 +474,7 @@ export default function AddProperty() {
             </Form>
           </CardContent>
         </Card>
+        </div>
       </div>
     </div>
   );

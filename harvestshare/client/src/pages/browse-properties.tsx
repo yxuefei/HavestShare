@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Search, MapPin, Star, Calendar, Percent } from "lucide-react";
+import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -127,12 +128,14 @@ export default function BrowseProperties() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Available Harvest Opportunities</h1>
-          <p className="text-gray-600">Find properties near you that need harvesting</p>
-        </div>
+    <div className="min-h-screen bg-gray-50">
+      <Navigation currentPage="/browse-properties" />
+      <div className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">Available Harvest Opportunities</h1>
+            <p className="text-gray-600">Find properties near you that need harvesting</p>
+          </div>
 
         {/* Search and Filters */}
         <div className="bg-white p-6 rounded-xl shadow-sm mb-8">
@@ -459,6 +462,7 @@ export default function BrowseProperties() {
             )}
           </DialogContent>
         </Dialog>
+        </div>
       </div>
     </div>
   );

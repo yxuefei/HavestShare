@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { MessageSquare, Star, CheckCircle, Calendar, MapPin, User as UserIcon } from "lucide-react";
+import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -197,9 +198,11 @@ export default function Deals() {
   const completedDeals = deals.filter((deal: Deal) => deal.status === 'completed');
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
+    <div className="min-h-screen bg-gray-50">
+      <Navigation currentPage="/deals" />
+      <div className="py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-4">My Deals</h1>
           <p className="text-gray-600">Manage your ongoing and completed harvest agreements</p>
         </div>
@@ -453,6 +456,7 @@ export default function Deals() {
             </div>
           </DialogContent>
         </Dialog>
+        </div>
       </div>
     </div>
   );

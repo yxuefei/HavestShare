@@ -12,17 +12,19 @@ export default function Home() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0 flex items-center">
-                <TreePine className="text-primary text-2xl mr-2" />
-                <span className="font-heading font-bold text-xl text-gray-900">HarvestShare</span>
+                <Link href="/" className="flex items-center">
+                  <TreePine className="text-primary text-2xl mr-2" />
+                  <span className="font-heading font-bold text-xl text-gray-900">HarvestShare</span>
+                </Link>
               </div>
               <div className="hidden md:ml-8 md:flex md:space-x-8">
-                <Link href="#browse" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+                <Link href="/browse-properties" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
                   Browse Properties
                 </Link>
-                <Link href="#how-it-works" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+                <Link href="/how-it-works" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
                   How It Works
                 </Link>
-                <Link href="#about" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
+                <Link href="/about" className="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium transition-colors">
                   About
                 </Link>
               </div>

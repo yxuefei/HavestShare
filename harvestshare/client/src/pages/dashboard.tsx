@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { TreePine, Apple, Star, Handshake, Search, Plus, UserPen, Calendar, MapPin } from "lucide-react";
+import Navigation from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -46,14 +47,16 @@ export default function Dashboard() {
     .reduce((sum: number, deal: Deal) => sum + parseFloat(deal.actualYield || '0'), 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back, {currentUser.fullName}!
-          </h1>
-          <p className="text-gray-600">Track your harvest activities and manage your {currentUser.userType === 'landowner' ? 'properties' : 'applications'}</p>
-        </div>
+    <div className="min-h-screen bg-gray-50">
+      <Navigation currentPage="/dashboard" />
+      <div className="py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Welcome back, {currentUser.fullName}!
+            </h1>
+            <p className="text-gray-600">Track your harvest activities and manage your {currentUser.userType === 'landowner' ? 'properties' : 'applications'}</p>
+          </div>
 
         {/* Stats Cards */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 mb-8">
@@ -290,6 +293,7 @@ export default function Dashboard() {
               </CardContent>
             </Card>
           </div>
+        </div>
         </div>
       </div>
     </div>

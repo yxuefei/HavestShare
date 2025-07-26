@@ -9,6 +9,8 @@ import AddProperty from "@/pages/add-property";
 import BrowseProperties from "@/pages/browse-properties";
 import Dashboard from "@/pages/dashboard";
 import Deals from "@/pages/deals";
+import HowItWorks from "@/pages/how-it-works";
+import About from "@/pages/about";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +22,8 @@ function Router() {
       <Route path="/browse-properties" component={BrowseProperties} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/deals" component={Deals} />
+      <Route path="/how-it-works" component={HowItWorks} />
+      <Route path="/about" component={About} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
