@@ -16,11 +16,36 @@ export default function Navigation({ currentPage }: NavigationProps) {
     if (user) {
       setCurrentUser(JSON.parse(user));
     }
+
+    // Listen for localStorage changes (useful for cross-tab updates)
+    const handleStorageChange = () => {
+      const updatedUser = localStorage.getItem('currentUser');
+      setCurrentUser(updatedUser ? JSON.parse(updatedUser) : null);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom events when user signs in/out in same tab
+    const handleUserChange = () => {
+      const updatedUser = localStorage.getItem('currentUser');
+      setCurrentUser(updatedUser ? JSON.parse(updatedUser) : null);
+    };
+
+    window.addEventListener('userChange', handleUserChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('userChange', handleUserChange);
+    };
   }, []);
 
   const handleSignOut = () => {
     localStorage.removeItem('currentUser');
     setCurrentUser(null);
+    
+    // Dispatch custom event to update navigation
+    window.dispatchEvent(new Event('userChange'));
+    
     setLocation('/');
   };
 

@@ -59,6 +59,10 @@ export default function Register() {
         description: `Welcome to HarvestShare, ${user.fullName}!`,
       });
       localStorage.setItem('currentUser', JSON.stringify(user));
+      
+      // Dispatch custom event to update navigation
+      window.dispatchEvent(new Event('userChange'));
+      
       setLocation('/dashboard');
     },
     onError: (error: any) => {
@@ -81,6 +85,10 @@ export default function Register() {
         description: `Logged in as ${user.fullName}`,
       });
       localStorage.setItem('currentUser', JSON.stringify(user));
+      
+      // Dispatch custom event to update navigation
+      window.dispatchEvent(new Event('userChange'));
+      
       setLocation('/dashboard');
     },
     onError: (error: any) => {

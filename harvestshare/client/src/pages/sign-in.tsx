@@ -34,6 +34,9 @@ export default function SignIn() {
       const user = await response.json();
       localStorage.setItem('currentUser', JSON.stringify(user));
       
+      // Dispatch custom event to update navigation
+      window.dispatchEvent(new Event('userChange'));
+      
       toast({
         title: "Welcome back!",
         description: "You have successfully signed in.",
